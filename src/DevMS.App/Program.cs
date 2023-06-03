@@ -1,3 +1,4 @@
+using AutoMapper;
 using DevMS.App.Data;
 using DevMS.Business.Interfaces;
 using DevMS.Data.Context;
@@ -26,6 +27,8 @@ namespace DevMS.App
             builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             builder.Services.AddControllersWithViews();
+
+            builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
             builder.Services.AddScoped<MeuDbContext>();
             builder.Services.AddScoped<IEnderecoRepository, EnderecoRepository>();
