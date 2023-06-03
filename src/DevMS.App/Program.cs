@@ -1,5 +1,7 @@
 using DevMS.App.Data;
+using DevMS.Business.Interfaces;
 using DevMS.Data.Context;
+using DevMS.Data.Repository;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -24,6 +26,11 @@ namespace DevMS.App
             builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             builder.Services.AddControllersWithViews();
+
+            builder.Services.AddScoped<MeuDbContext>();
+            builder.Services.AddScoped<IEnderecoRepository, EnderecoRepository>();
+            builder.Services.AddScoped<IFornecedorRepository, FornecedorRepository>();
+            builder.Services.AddScoped<IProdutoRepository, ProdutoRepository>();
 
             var app = builder.Build();
 
