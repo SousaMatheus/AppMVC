@@ -1,5 +1,4 @@
-﻿using AppMVC.Inicial.Models;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using System.ComponentModel.DataAnnotations;
 
 namespace DevMS.App.ViewModels

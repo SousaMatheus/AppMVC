@@ -1,4 +1,4 @@
-﻿namespace AppMVC.Inicial.Models
+﻿namespace DevMS.Business.Models
 {
     public abstract class Entity
     {

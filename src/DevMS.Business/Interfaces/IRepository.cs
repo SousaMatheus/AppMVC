@@ -1,4 +1,4 @@
-﻿using AppMVC.Inicial.Models;
+﻿using DevMS.Business.Models;
 using System.Linq.Expressions;
 
 namespace DevMS.Business.Interfaces

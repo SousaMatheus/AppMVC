@@ -1,4 +1,4 @@
-﻿using AppMVC.Inicial.Models;
+﻿using DevMS.Business.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 

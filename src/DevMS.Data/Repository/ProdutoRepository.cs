@@ -1,4 +1,4 @@
-﻿using AppMVC.Inicial.Models;
+﻿using DevMS.Business.Models;
 using DevMS.Business.Interfaces;
 using DevMS.Data.Context;
 using Microsoft.EntityFrameworkCore;
@@ -15,7 +15,7 @@ namespace DevMS.Data.Repository
                 .FirstOrDefaultAsync(p => p.Id == fornecedorId);
         }
 
-        public async Task<IEnumerable<Produto>> ObterProdutosFornecedores(Guid fornecedorId)
+        public async Task<IEnumerable<Produto>> ObterProdutosFornecedores()
         {
             return await Db.Produtos.AsNoTracking().Include(f => f.Fornecedor)
                 .OrderBy(p => p.Nome).ToListAsync();

@@ -1,4 +1,4 @@
-﻿using AppMVC.Inicial.Models;
+﻿using DevMS.Business.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace DevMS.Data.Context

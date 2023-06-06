@@ -24,7 +24,7 @@ namespace DevMS.Data.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
-            modelBuilder.Entity("AppMVC.Inicial.Models.Endereco", b =>
+            modelBuilder.Entity("DevMS.App.Models.Endereco", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -68,7 +68,7 @@ namespace DevMS.Data.Migrations
                     b.ToTable("Enderecos", (string)null);
                 });
 
-            modelBuilder.Entity("AppMVC.Inicial.Models.Fornecedor", b =>
+            modelBuilder.Entity("DevMS.App.Models.Fornecedor", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -93,7 +93,7 @@ namespace DevMS.Data.Migrations
                     b.ToTable("Fornecedores", (string)null);
                 });
 
-            modelBuilder.Entity("AppMVC.Inicial.Models.Produto", b =>
+            modelBuilder.Entity("DevMS.App.Models.Produto", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -130,19 +130,19 @@ namespace DevMS.Data.Migrations
                     b.ToTable("Produtos", (string)null);
                 });
 
-            modelBuilder.Entity("AppMVC.Inicial.Models.Endereco", b =>
+            modelBuilder.Entity("DevMS.App.Models.Endereco", b =>
                 {
-                    b.HasOne("AppMVC.Inicial.Models.Fornecedor", "Fornecedor")
+                    b.HasOne("DevMS.App.Models.Fornecedor", "Fornecedor")
                         .WithOne("Endereco")
-                        .HasForeignKey("AppMVC.Inicial.Models.Endereco", "FornecedorId")
+                        .HasForeignKey("DevMS.App.Models.Endereco", "FornecedorId")
                         .IsRequired();
 
                     b.Navigation("Fornecedor");
                 });
 
-            modelBuilder.Entity("AppMVC.Inicial.Models.Produto", b =>
+            modelBuilder.Entity("DevMS.App.Models.Produto", b =>
                 {
-                    b.HasOne("AppMVC.Inicial.Models.Fornecedor", "Fornecedor")
+                    b.HasOne("DevMS.App.Models.Fornecedor", "Fornecedor")
                         .WithMany("Produtos")
                         .HasForeignKey("FornecedorId")
                         .IsRequired();
@@ -150,7 +150,7 @@ namespace DevMS.Data.Migrations
                     b.Navigation("Fornecedor");
                 });
 
-            modelBuilder.Entity("AppMVC.Inicial.Models.Fornecedor", b =>
+            modelBuilder.Entity("DevMS.App.Models.Fornecedor", b =>
                 {
                     b.Navigation("Endereco");
 

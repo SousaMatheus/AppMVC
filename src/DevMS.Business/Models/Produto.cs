@@ -1,4 +1,4 @@
-﻿namespace AppMVC.Inicial.Models
+﻿namespace DevMS.Business.Models
 {
     public class Produto : Entity
     {
@@ -11,7 +11,5 @@
         public bool Ativo { get; set; }
 
         public Fornecedor Fornecedor { get; set; }
-
-
     }
 }

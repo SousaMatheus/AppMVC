@@ -1,7 +1,5 @@
-﻿using AppMVC.Inicial.Models;
-using AppMVC.Inicial;
+﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel;
 
 namespace DevMS.App.ViewModels
 {
@@ -18,7 +16,9 @@ namespace DevMS.App.ViewModels
         [StringLength(14, ErrorMessage = "O campo {0} deve ter entre {2} e {1} caracteres", MinimumLength = 8)]
         public string Documento { get; set; }
 
+        [DisplayName("Tipo")]
         public int TipoFornecedor { get; set; }
+
         public EnderecoViewModel Endereco { get; set; }
 
         [DisplayName("Ativo?")]

@@ -1,4 +1,4 @@
-﻿namespace AppMVC.Inicial.Models
+﻿namespace DevMS.Business.Models
 {
     public class Fornecedor : Entity
     {
