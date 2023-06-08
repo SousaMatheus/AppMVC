@@ -23,12 +23,13 @@ namespace DevMS.App.Controllers
 
         public async Task<IActionResult> Index()
         {
-            return View(_mapper.Map<IEnumerable<FornecedorViewModel>>(await _fornecedorRepository.ObterTodos()));
+            var fornecedores = _mapper.Map<IEnumerable<FornecedorViewModel>>(await _fornecedorRepository.ObterTodos());
+            return View(fornecedores);
         }
 
         public async Task<IActionResult> Details(Guid id)
         {
-            var fornecedorViewModel = ObterFornecedorEndereco(id);
+            var fornecedorViewModel = await ObterFornecedorProdutosEndereco(id);
 
             if(fornecedorViewModel == null)
                 return NotFound();
@@ -55,7 +56,7 @@ namespace DevMS.App.Controllers
 
         public async Task<IActionResult> Edit(Guid id)
         {
-            var fornecedorViewModel = ObterFornecedorProdutosEndereco(id);
+            var fornecedorViewModel = await ObterFornecedorProdutosEndereco(id);
 
             if(fornecedorViewModel == null)
                 return NotFound();
@@ -78,7 +79,7 @@ namespace DevMS.App.Controllers
 
         public async Task<IActionResult> Delete(Guid id)
         {
-            var fornecedorViewModel = ObterFornecedorEndereco(id);
+            var fornecedorViewModel = await ObterFornecedorEndereco(id);
 
             if(fornecedorViewModel == null)
                 return NotFound();
@@ -102,7 +103,7 @@ namespace DevMS.App.Controllers
 
         private async Task<FornecedorViewModel> ObterFornecedorEndereco(Guid id)
         {
-            return _mapper.Map<FornecedorViewModel>(await _fornecedorRepository.ObterFornecedorEndereco(id));
+            return _mapper.Map<FornecedorViewModel>(await _fornecedorRepository.ObterFornecedorEndereco(id)); 
         }
 
         private async Task<FornecedorViewModel> ObterFornecedorProdutosEndereco(Guid id)
