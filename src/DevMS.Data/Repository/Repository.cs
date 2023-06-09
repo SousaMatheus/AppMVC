@@ -23,11 +23,11 @@ namespace DevMS.Data.Repository
         }
         public virtual async Task<T> ObterPorId(Guid id)
         {
-            return await DbSet.FindAsync(id);
+            return await DbSet.AsNoTracking().FirstOrDefaultAsync(entity => entity.Id == id);
         }
         public virtual async Task<List<T>> ObterTodos()
         {
-            return await DbSet.ToListAsync();
+            return await DbSet.AsNoTracking().ToListAsync();
         }
         public virtual async Task Adicionar(T entity)
         {
