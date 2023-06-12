@@ -1,16 +1,24 @@
 ﻿@model DevMS.App.ViewModels.ProdutoViewModel
 
 @{
-    ViewData["Title"] = "Delete";
+    ViewData["Title"] = "Excluir " + Model.Nome;
 }
 
-<h1>Delete</h1>
+<h1>@ViewData["Title"]</h1>
 
-<h3>Are you sure you want to delete this?</h3>
-<div>
-    <h4>ProdutoViewModel</h4>
+<h3>Você tem certeza disso?</h3>
+<div class="row">
     <hr />
-    <dl class="row">
+    <div class="col-md-4">
+        <img style="width:400px" src="~/imagens/@Model.Imagem" alt="~/imagens/@Model.Imagem" />
+    </div>
+    <dl class="col-md-6">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.FornecedorId)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Fornecedor.Nome)
+        </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.Nome)
         </dt>
@@ -29,11 +37,11 @@
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.Imagem)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Valor)
         </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Valor)
+        <dd class="col-sm-10">
+            @Model.Valor.ToString("C")
         </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.Ativo)
@@ -41,14 +49,11 @@
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.Ativo)
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Fornecedor)
-        </dt>
     </dl>
     
     <form asp-action="Delete">
         <input type="hidden" asp-for="Id" />
-        <input type="submit" value="Delete" class="btn btn-danger" /> |
-        <a asp-action="Index">Back to List</a>
+        <input type="submit" value="Excluir" class="btn btn-danger" />
+        <a class="btn btn-info" href="javascript:window.history.back();">Voltar</a>
     </form>
 </div>

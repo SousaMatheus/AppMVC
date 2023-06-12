@@ -1,51 +1,56 @@
 ﻿@model DevMS.App.ViewModels.ProdutoViewModel
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Detalhes " + Model.Nome;
 }
 
-<h1>Details</h1>
+<h1>@ViewData["Title"]</h1>
 
-<div>
-    <h4>ProdutoViewModel</h4>
+<div class="row">
     <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
+    <div class="col-md-4">
+        <img style="width:400px" src="~/imagens/@Model.Imagem" alt="~/imagens/@Model.Imagem" />
+    </div>
+    <dl class=" col-md-6">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.FornecedorId)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Fornecedor.Nome)
+        </dd>
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Nome)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Nome)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Descricao)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Descricao)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Imagem)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Imagem)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Valor)
         </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Valor)
+        <dd class="col-sm-10">
+            @Model.Valor.ToString("C")
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Ativo)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Ativo)
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Fornecedor)
-        </dt>
     </dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+    <a class="btn btn-primary" asp-action="Edit" asp-route-id="@Model?.Id">Editar</a>
+    <a class="btn btn-info" href="javascript:window.history.back();">Voltar</a>
 </div>

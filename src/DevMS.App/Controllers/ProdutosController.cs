@@ -1,10 +1,8 @@
 ﻿using AutoMapper;
-using DevMS.Business.Models;
 using DevMS.App.ViewModels;
 using DevMS.Business.Interfaces;
+using DevMS.Business.Models;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
 
 namespace DevMS.App.Controllers
 {
