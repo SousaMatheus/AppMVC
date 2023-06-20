@@ -49,10 +49,27 @@
 <div class="mb-3 mt-3">
     <hr />
     <h4>Produtos</h4>
-    <partial name="../Produtos/_DetalhesProduto" controller="ProdutosController" model="@Model.Produtos" />
+    <partial name="../Produtos/_DetalhesProduto" model="@Model.Produtos" />
 </div>
+
+<div id="myModal" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div id="myModalContent"></div>
+        </div>
+    </div>
+</div>
+
 @section Scripts {
     @{
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }
+
+    <script>
+        $(document).ready(function () {
+            SetModal();
+        });
+
+    </script>
+
 }
