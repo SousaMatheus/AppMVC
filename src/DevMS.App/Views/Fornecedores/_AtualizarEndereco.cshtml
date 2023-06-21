@@ -1,31 +1,8 @@
 ﻿@model DevMS.App.ViewModels.FornecedorViewModel
-
 @{
-    ViewData["Title"] = "Atualizar Endereco";
+    ViewData["Title"] = "Atualizar Endereço";
 }
 
-
-<div class="modal-header">
-    <h5 class="modal-title">Atualizar Endereço</h5>
-    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
-</div>
-
-<form asp-action="AtualizarEndereco">
-    <div class="modal-body">
-        <input type="hidden" asp-for="Endereco.Id" />
-        <input type="hidden" asp-for="Endereco.FornecedorId" />
-
-        <partial name="_Endereco" />
-
-    </div>
-
-    <div class="modal-footer">
-        <button type="submit" class="btn btn-primary">Salvar</button>
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
-    </div>
-</form>
-
-@*
 <div class="modal-header">
     <h4 class="modal-title">@ViewData["Title"]</h4>
     <button type="button" class="close" data-dismiss="modal">
@@ -49,4 +26,4 @@
         </div>
 
     </div>
-</form>*@
+</form>
