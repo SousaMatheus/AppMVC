@@ -4,7 +4,7 @@ namespace DevMS.App.Extensions
 {
     public class EmailTagHelper :TagHelper
     {
-        public string EmailDomain { get; set; } = "matheus.sousa";
+        public string EmailDomain { get; set; } = "msdev.com.br";
 
         public override async Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
         {
