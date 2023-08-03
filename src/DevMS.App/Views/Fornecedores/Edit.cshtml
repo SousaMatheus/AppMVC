@@ -9,8 +9,8 @@
 <hr />
 <form asp-action="Edit">
     <div class="row">
+        @await Component.InvokeAsync("Summary")
 
-        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
         <input type="hidden" asp-for="Id" />
 
         <div class="form-group col-md-6">

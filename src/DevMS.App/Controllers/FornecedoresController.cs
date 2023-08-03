@@ -6,22 +6,23 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace DevMS.App.Controllers
 {
-    public class FornecedoresController : Controller
+    public class FornecedoresController : BaseController
     {
         private readonly IFornecedorRepository _fornecedorRepository;
-        private readonly IEnderecoRepository _enderecoRepository;
+        private readonly IFornecedorService _fornecedorService;
         private readonly IProdutoRepository _produtoRepository;
         private readonly IMapper _mapper;
 
         public FornecedoresController(IFornecedorRepository fornecedorRepository,
-                                      IEnderecoRepository enderecoRepository, 
                                       IProdutoRepository produtoRepository,
-                                      IMapper mapper)
+                                      IMapper mapper,
+                                      IFornecedorService fornecedorService,
+                                      INotificador notificador) : base(notificador)
         {
             _fornecedorRepository = fornecedorRepository;
             _produtoRepository = produtoRepository;
             _mapper = mapper;
-            _enderecoRepository = enderecoRepository;
+            _fornecedorService = fornecedorService;
         }
 
         [Route("lista-de-fornecedores")]
@@ -56,7 +57,10 @@ namespace DevMS.App.Controllers
             if(!ModelState.IsValid)
                 return View(fornecedorViewModel);
 
-            await _fornecedorRepository.Adicionar(_mapper.Map<Fornecedor>(fornecedorViewModel));
+            var fornecedor = _mapper.Map<Fornecedor>(fornecedorViewModel);
+            await _fornecedorService.Adicionar(fornecedor);
+
+            if(!OperacaoValida()) return View(fornecedorViewModel);
 
             return RedirectToAction(nameof(Index));
         }
@@ -81,7 +85,9 @@ namespace DevMS.App.Controllers
             if(!ModelState.IsValid)
                 return View(fornecedorViewModel);
 
-            await _fornecedorRepository.Atualizar(_mapper.Map<Fornecedor>(fornecedorViewModel));
+            await _fornecedorService.Atualizar(_mapper.Map<Fornecedor>(fornecedorViewModel));
+
+            if(!OperacaoValida()) return View(fornecedorViewModel);
 
             return RedirectToAction(nameof(Index));
         }
@@ -107,7 +113,8 @@ namespace DevMS.App.Controllers
             if(fornecedor == null)
                 return Problem("O fornecedor não existe");
 
-            await _fornecedorRepository.Remover(id);
+            await _fornecedorService.Remover(id);
+            if(!OperacaoValida()) return View(fornecedor);
 
             return RedirectToAction(nameof(Index));
         }
@@ -135,7 +142,9 @@ namespace DevMS.App.Controllers
 
             if(!ModelState.IsValid) return PartialView("_AtualizarEndereco", fornecedorViewModel);
 
-            await _enderecoRepository.Atualizar(_mapper.Map<Endereco>(fornecedorViewModel.Endereco));
+            await _fornecedorService.AtualizarEndereco(_mapper.Map<Endereco>(fornecedorViewModel.Endereco));
+
+            if(!OperacaoValida()) return PartialView("_AtualizarEndereco", fornecedorViewModel);
 
             var url = Url.Action("ObterEndereco", "Fornecedores", new {id = fornecedorViewModel.Endereco.FornecedorId});
             return Json(new { success = true, url });

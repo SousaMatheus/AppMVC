@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
 using DevMS.App.Extensions;
 using DevMS.Business.Interfaces;
+using DevMS.Business.Notificacoes;
+using DevMS.Business.Services;
 using DevMS.Data.Context;
 using DevMS.Data.Repository;
 using Microsoft.AspNetCore.Mvc.DataAnnotations;
@@ -19,6 +21,10 @@ namespace DevMS.App.Configurations
             services.AddScoped<IFornecedorRepository, FornecedorRepository>();
             services.AddScoped<IProdutoRepository, ProdutoRepository>();
             services.AddSingleton<IValidationAttributeAdapterProvider, MoedaValidationAttributeAdpterProvider>();
+
+            services.AddScoped<INotificador, Notificador>();
+            services.AddScoped<IProdutoService, ProdutoService>();
+            services.AddScoped<IFornecedorService, FornecedorService>();
 
             return services;
         }

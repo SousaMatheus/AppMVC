@@ -1,4 +1,6 @@
-﻿using DevMS.Business.Models;
+﻿using DevMS.Business.Interfaces;
+using DevMS.Business.Models;
+using DevMS.Business.Notificacoes;
 using FluentValidation;
 using FluentValidation.Results;
 
@@ -6,9 +8,15 @@ namespace DevMS.Business.Services
 {
     public abstract class BaseService
     {
+        private readonly INotificador _notificador;
+
+        public BaseService(INotificador notificador)
+        {
+            _notificador = notificador;
+        }
         protected void Notificar(string message)
         {
-            //propagar para camada de apresentacao
+            _notificador.HandleNotificacoes(new Notificacao(message));
         }
 
         protected void Notificar(ValidationResult validationResult)

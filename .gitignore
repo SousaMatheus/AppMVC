@@ -388,3 +388,4 @@ MigrationBackup/
 *.msm
 *.msp
 *.jpeg
+/src/DevMS.App/wwwroot/imagens

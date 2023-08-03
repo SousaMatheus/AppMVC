@@ -10,7 +10,7 @@
 <div class="row">
     <div class="col-md-10">
         <form enctype="multipart/form-data" asp-action="Edit">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            @await Component.InvokeAsync("Summary")
 
             <input type="hidden" asp-for="Id" />
 
