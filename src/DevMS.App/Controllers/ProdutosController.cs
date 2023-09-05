@@ -15,16 +15,19 @@ namespace DevMS.App.Controllers
         private readonly IFornecedorRepository _fornecedorRepository;
         private readonly IProdutoService _produtoService;
         private readonly IMapper _mapper;
+        private readonly ILogger<ProdutosController> _logger;
 
         public ProdutosController(IProdutoRepository produtoRepository,
                                   IMapper mapper,
                                   IFornecedorRepository fornecedorRepository,
                                   IProdutoService produtoService,
+                                  ILogger<ProdutosController> logger,
                                   INotificador notificador) : base(notificador)
         {
             _produtoRepository = produtoRepository;
             _fornecedorRepository = fornecedorRepository;
             _mapper = mapper;
+            _logger = logger;
             _produtoService = produtoService;
         }
 
@@ -32,6 +35,8 @@ namespace DevMS.App.Controllers
         [Route("listar-produtos")]
         public async Task<IActionResult> Index()
         {
+            _logger.LogTrace("index-produto");
+
             return View(_mapper.Map<IEnumerable<ProdutoViewModel>>(await _produtoRepository.ObterProdutosFornecedores()));
         }
 

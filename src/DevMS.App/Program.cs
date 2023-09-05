@@ -21,8 +21,8 @@ namespace DevMS.App
 
             var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
 
-            builder.Services.ResolveIdentityConfig(connectionString);
-            
+            builder.Services.ResolveKissLog();
+            builder.Services.ResolveIdentityConfig(connectionString);            
             builder.Services.ResolveConfig();
 
             builder.Services.AddDbContext<MeuDbContext>(options =>
@@ -36,10 +36,12 @@ namespace DevMS.App
             if(app.Environment.IsDevelopment())
             {
                 app.UseMigrationsEndPoint();
+                app.UseDeveloperExceptionPage();
             }
             else
             {
-                app.UseExceptionHandler("/Home/Error");
+                app.UseExceptionHandler("/erro/500");
+                app.UseStatusCodePagesWithRedirects("/erro/{0}");
                 app.UseHsts();
             }
 
@@ -56,6 +58,8 @@ namespace DevMS.App
                 name: "default",
                 pattern: "{controller=Home}/{action=Index}/{id?}");
             app.MapRazorPages();
+
+            app.RegisterKissLogMiddleware(builder.Configuration);
 
             app.Run();
         }
